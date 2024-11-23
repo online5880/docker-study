@@ -1,0 +1,17 @@
+services:
+  django-server-container: # 서비스이름 - 컨테이너를 어떻게 띄울지 정의하는 가이드
+    image : djangodocker:1
+    ports:
+      - 8000:8000
+
+  nignx:
+    image : nginx:1
+    ports:
+      - 80:80
+    restart: always
+
+  db:
+    image : postgres:17-alpine
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
